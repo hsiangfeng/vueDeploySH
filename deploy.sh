@@ -37,14 +37,14 @@ echo ${osStatus} " 一鍵部署 5 秒後開始運作 "
 echo ${osStatus} " ＊如要停止動作請按下 CRTL + C or Control + C"
 echo ${osStatus} "==============================================================${norm}"
 
-sleep 5s
+# sleep 5s
 
 echo
 echo ${osStatus} "${yellow}=============================================================="
 echo ${osStatus} " 準備取得 Git 遠端 Url..."
 echo ${osStatus} "==============================================================${norm}"
 
-sleep 1s
+# sleep 1s
 originUrl=$(git config --get remote.origin.url)
 
 echo
@@ -68,7 +68,50 @@ echo ${osStatus} " 傳輸方式將採用 $status "
 echo ${osStatus} " 目前遠端分支 URL：$originUrl "
 echo ${osStatus} "==============================================================${norm}"
 
+# sleep 5s
+
+echo
+echo ${osStatus} "${yellow}=============================================================="
+echo ${osStatus} " 判斷是否已存在 vue.config.js"
+echo ${osStatus} "==============================================================${norm}"
+
+work_path="$(dirname $0)/vue.config.js";
+if [ ! -e "$work_path" ]
+then
+
+echo
+echo ${osStatus} "${yellow}=============================================================="
+echo ${osStatus} " vue.config.js 不存在 "
+echo ${osStatus} " 將於五秒後建立 vue.config.js "
+echo ${osStatus} " ＊如要停止動作請按下 CRTL + C or Control + C"
+echo ${osStatus} "==============================================================${norm}"
+
 sleep 5s
+
+touch $work_path
+
+echo
+echo ${osStatus} "${lgreen}=============================================================="
+echo ${osStatus} " 五秒後開始寫入 Vue Cli 編譯後的路徑 "
+echo ${osStatus} " publicPath 路徑是 「./」 "
+echo ${osStatus} " ＊如要停止動作請按下 CRTL + C or Control + C"
+echo ${osStatus} "==============================================================${norm}"
+
+sleep 5s
+
+echo "module.exports = {
+  publicPath: './',
+};">$work_path
+
+else
+
+echo
+echo ${osStatus} "${lgreen}=============================================================="
+echo ${osStatus} " 目前已存在 vue.config.js"
+echo ${osStatus} " 準備開始進入編譯 Vue Cli 階段"
+echo ${osStatus} "==============================================================${norm}"
+
+fi
 
 echo
 echo ${osStatus} "${yellow}=============================================================="

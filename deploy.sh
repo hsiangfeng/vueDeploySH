@@ -94,12 +94,17 @@ echo
 echo ${osStatus} "${lgreen}=============================================================="
 echo ${osStatus} " 五秒後開始寫入 Vue Cli 編譯後的路徑 "
 echo ${osStatus} " publicPath 路徑是 「./」 "
+echo ${osStatus} " 詳細可見該檔案下註解。 "
 echo ${osStatus} " ＊如要停止動作請按下 CRTL + C or Control + C"
 echo ${osStatus} "==============================================================${norm}"
 
 sleep 5s
 
-echo "module.exports = {
+echo "// 該檔案生成的方式可以在 Vue Ui 中的「設定」->「Vue Cli」->「公開路徑」找到。
+module.exports = {
+  // 預設狀況下，部署到 GitHub Pages 可能會無法顯示畫面
+  // 因此需要多設置該屬性
+  // 官方文件：https://cli.vuejs.org/zh/config/#publicpath
   publicPath: './',
 };">$work_path
 

@@ -37,15 +37,23 @@ echo ${osStatus} " 一鍵部署 5 秒後開始運作 "
 echo ${osStatus} " ＊如要停止動作請按下 CRTL + C or Control + C"
 echo ${osStatus} "==============================================================${norm}"
 
-# sleep 5s
+sleep 5s
 
 echo
 echo ${osStatus} "${yellow}=============================================================="
 echo ${osStatus} " 準備取得 Git 遠端 Url..."
 echo ${osStatus} "==============================================================${norm}"
 
-# sleep 1s
+sleep 1s
 originUrl=$(git config --get remote.origin.url)
+
+echo
+echo ${osStatus} "${yellow}=============================================================="
+echo ${osStatus} " 準備取得當前 Git Branch 名稱"
+echo ${osStatus} "==============================================================${norm}"
+
+sleep 1s
+branchName=$(git branch --show-current)
 
 echo
 echo ${osStatus} "${lgreen}=============================================================="
@@ -66,9 +74,10 @@ echo
 echo ${osStatus} "${lgreen}=============================================================="
 echo ${osStatus} " 傳輸方式將採用 $status "
 echo ${osStatus} " 目前遠端分支 URL：$originUrl "
+echo ${osStatus} " 當前分支是：$branchName "
 echo ${osStatus} "==============================================================${norm}"
 
-# sleep 5s
+sleep 5s
 
 echo
 echo ${osStatus} "${yellow}=============================================================="
@@ -154,7 +163,7 @@ echo ${osStatus} " 5 秒後部署檔案到遠端分支 "
 echo ${osStatus} " ＊如要停止動作請按下 CRTL + C or Control + C"
 echo ${osStatus} "==============================================================${norm}"
 sleep 5s
-git push -f $originUrl master:gh-pages
+git push -f $originUrl $branchName:gh-pages
 
 echo
 echo ${osStatus} "${yellow}=============================================================="

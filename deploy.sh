@@ -156,6 +156,7 @@ echo ${osStatus} "==============================================================
 git init
 git add .
 git commit -m "update `date +'%Y-%m-%d %H:%M:%S'`";
+git branch -M $branchName
 
 echo
 echo ${osStatus} "${yellow}=============================================================="
